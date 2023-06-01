@@ -12,11 +12,17 @@ for usuario in usuarios:
 def nueva_cuenta(usuarios):
     cuentas = {}
     for usuario in usuarios:
+        nusuario = nombreusuario(usuario)
         contraseña = password()
         telefono = numerotelefono(usuario)
-        cuentas[usuario] = {'contraseña': contraseña, 'teléfono': telefono}
+        cuentas[usuario] = {'nombre_de_usuario': nusuario, 'contraseña': contraseña, 'teléfono': telefono}
     return cuentas
     
+
+def nombreusuario(usuario):
+    numeros = ''.join(random.choices('0123456789', k=4))
+    nusuario = usuario.lower() + numeros
+    return nusuario
 
 #Asigne una contraseña para cada cuenta. La contraseña debe ser creada con random y debe cumplir con los siguientes criterios: mayúsculas, minúsculas y números.
 def password():
@@ -39,6 +45,7 @@ cuentas_usuarios = nueva_cuenta(usuarios)
 #finalmente se devolveran las cuentas de usuario
 for usuario, cuenta in cuentas_usuarios.items():
     print(f"Cuenta de {usuario}:")
+    print(f"Nombre de Usuario: {cuenta['nombre_de_usuario']}")
     print(f"Contraseña: {cuenta['contraseña']}")
     print(f"Teléfono: {cuenta['teléfono']}")
     print()
